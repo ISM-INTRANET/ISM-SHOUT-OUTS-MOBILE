@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISM SHOUT-OUTS</title>
+
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #eef1f5;
+  color: #111;
+}
+
+/* =====================
+   ENTER SCREEN (MOBILE)
+===================== */
+#enterScreen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+#enterScreen.hide {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+#enterBtn {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.7);
+  padding: 16px 44px;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.hint {
+  margin-top: 20px;
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.6);
+}
+
+.disclaimer {
+  position: absolute;
+  bottom: 60px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+}
+
+/* =====================
+   CONTENT SECTIONS
+===================== */
+.section {
+  padding: 40px 16px;
+  text-align: center;
+}
+
+/* BANNERS (FULL WIDTH) */
+.section .banner {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 16px;
+}
+
+/* MAIN IMAGES */
+.section img.main {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+/* TEXT */
+.section h2 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.section p {
+  font-size: 15px;
+  line-height: 1.5;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* SECTION BACKGROUNDS */
+.section:nth-child(1) { background:#eef1f5; }
+.section:nth-child(2) { background:#ffffff; }
+.section:nth-child(3) { background:#eef1f5; }
+.section:nth-child(4) { background:#ffffff; }
+.section:nth-child(5) { background:#eef1f5; }
+.section:nth-child(6) { background:#ffffff; }
+
+/* =====================
+   BACK BUTTON
+===================== */
+.back-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 30px;
+  border: 1.5px solid #000;
+  text-decoration: none;
+  color: #000;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ENTER SCREEN -->
+<div id="enterScreen">
+  <button id="enterBtn">ENTER</button>
+  <div class="hint">Have a peek</div>
+  <div class="disclaimer">Disclaimer: This is not a scam.</div>
+</div>
+
+<!-- MUSIC -->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- CONTENT -->
+<div class="section">
+  <img src="banner1.png" class="banner">
+  <img src="img1.jpg" class="main">
+</div>
+
+<div class="section">
+  <img src="banner2.png" class="banner">
+  <img src="img2.jpg" class="main">
+</div>
+
+<div class="section">
+  <img src="banner3.png" class="banner">
+  <img src="img3.jpg" class="main">
+</div>
+
+<div class="section">
+  <img src="banner4.png" class="banner">
+  <img src="img4.jpg" class="main">
+</div>
+
+<div class="section">
+  <img src="banner5.png" class="banner">
+  <img src="img5.jpg" class="main">
+</div>
+
+<div class="section">
+  <h2>Special Appreciation</h2>
+  <p>To everyone who went the extra mile — thank you.</p>
+
+  <a href="https://darebn.sharepoint.com/sites/ismnet"
+     class="back-btn"
+     target="_blank"
+     rel="noopener noreferrer">
+     ← Back to ISM Intranet
+  </a>
+</div>
+
+<script>
+const enterBtn = document.getElementById("enterBtn");
+const enterScreen = document.getElementById("enterScreen");
+const bgm = document.getElementById("bgm");
+
+enterBtn.addEventListener("click", () => {
+  enterScreen.classList.add("hide");
+
+  bgm.volume = 0;
+  bgm.play();
+
+  let v = 0;
+  const fade = setInterval(() => {
+    v += 0.05;
+    bgm.volume = Math.min(v, 1);
+    if (v >= 1) clearInterval(fade);
+  }, 200);
+});
+</script>
+
+</body>
+</html>
